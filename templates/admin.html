@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            </head>
+    <body>
+        <form action="/added" method="post">
+            <div class="container">
+                <h1>Add New Movies</h1>
+                <p>Please enter teh details of the movie to be added</p>
+                <hr>
+                
+                <label for="movie"><b>Movie</b></label>
+                <input type="text" placeholder="Enter Movie" name="movie" required id="movie">
+                    
+                    <label for="actor"><b>Actor</b></label>
+                    <input type="text" placeholder="Enter name of Actor" id ="actor" name="actor" required>
+                      
+                    <label for="actress"><b>Actress</b></label>
+                    <input type="text" placeholder="Enter name of Actress" id ="actress" name="actress" required>
+
+                    <label for="director"><b>Director</b></label>
+                    <input type="text" placeholder="Enter name of Director" id ="director" name="director" required>
+
+                    <label for="imageurl"><b>Poster URL</b></label>
+                    <input type="text" placeholder="Enter url of poster." id ="imageurl" name="imageurl" required>
+                    <label for="language"><b>Language</b></label>
+                    <select id="language" name="language">
+                        <option>Hindi</option>
+                        <option>English</option>
+                    </select>
+
+                    <label for="description"><b>Description</b></label>
+                    <textarea id="description" name="description" rows="10" cols="30"></textarea>
+
+
+                            <hr>
+                                <button type="submit" class="addbtn">Add Movie</button>
+                                </div>
+                                
+                                <div class="container signin">
+                                <p> <a href="/homepg">Sign out</a>.</p>
+                                </div>
+                                </form>
+                                
+                                </body>
+                                </html>
