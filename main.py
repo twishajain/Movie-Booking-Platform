@@ -20,21 +20,27 @@ def home():
 def terms():
     app.config['LAST']="terms.html"
     return render_template("terms.html")
+@app.route("/landing", methods=['GET','POST'])
+def landing():
+    return render_template("landing.html")
 @app.route("/homepg", methods=['GET','POST'])
 def homepg():
     email=request.values.get("email")
     psw=request.values.get("psw")
-    if (email=="admin" and psw=="admin" and app.config['LAST']=="login.html"):
+    if (email=="admin" and psw=="admin"):
         app.config['LAST']="homepg.html"
         today = date.today()
         tdate = str(today.strftime("%Y-%m-%d"))
         print(tdate)
         return render_template("admin.html",date=tdate)
-    if (app.config['LAST']=="login.html"):
+    if (app.config['LAST']=="login.html" or email!=None):
         for r in registered_users.find():
             if (r["email"]==email and r["psw"]==psw):
+                app.config['LAST']="landing.html"
+                return render_template("landing.html")
+            else:
                 app.config['LAST']="homepg.html"
-                return render_template("homepg.html")
+                return render_template("error.html")
     if (app.config['LAST']=="login.html"):
         app.config['LAST']="homepg.html"
         return render_template("error.html")
@@ -68,6 +74,10 @@ def admin():
 def login():
     app.config['LAST']="login.html"
     return render_template("login.html")
+@app.route("/seats")
+def seats():
+    app.config['LAST']="seats.html"
+    return render_template("seats.html")
 @app.route("/added", methods=['GET','POST'])
 def added():
     movie=request.values.get("movie")
