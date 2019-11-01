@@ -6,7 +6,7 @@ from datetime import date,time
 import pymongo
 from flask import jsonify, request
 from flask_pymongo import PyMongo
-client = MongoClient("mongodb+srv://tejas:1234@pocketsdb-i09wt.mongodb.net/test?retryWrites=true&w=majority")
+client = MongoClient("mongodb://127.0.0.1:27017")
 db = client.mymongodb
 registered_users = db.registered
 movies= db.movies
@@ -76,8 +76,11 @@ def added():
     director=request.values.get("director")
     language=request.values.get("language")
     description=request.values.get("description")
+    fromdate=request.values.get("fromdate")
+    todate=request.values.get("todate")
+    timeslot=request.values.get("timeslot")
     imageurl=request.values.get("imageurl")
-    movies.insert({ "movie":movie, "actor":actor, "actress":actress, "director":director, "language":language, "description":description, "imageurl":imageurl})
+    movies.insert({ "movie":movie, "actor":actor, "actress":actress, "director":director, "language":language, "description":description, "imageurl":imageurl, "timeslot":timeslot, "fromdate":fromdate,"todate":todate})
     app.config['LAST']="added.html"
     return render_template("added.html")
 if __name__ == "__main__":

@@ -45,9 +45,12 @@
                         <option>Hindi</option>
                         <option>English</option>
                     </select>
-                    <input type="date" id="fromdate" min={{date}}>
-                    <input type="date" id="todate" min={{date}}>
-                    <input type="time" id="timeslot" min="08:00" max="23:00" onchange="checkTime(this)">
+                    <label for="fromdate"><b>From</b></label>
+                    <input type="date" id="fromdate" name="fromdate" min={{date}}>
+                    <label for="todate"><b>To</b></label>
+                    <input type="date" id="todate" name="todate" min={{date}}>
+                    <label for="timeslot"><b>Time</b></label>
+                    <input type="time" id="timeslot" name="timeslot" min="08:00" max="23:00" onchange="checkTime(this)">
                     <label for="description"><b>Description</b></label>
                     <textarea id="description" name="description" rows="10" cols="30"></textarea>
 
