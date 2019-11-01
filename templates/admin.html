@@ -4,6 +4,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
             </head>
     <body>
+        <script type="text/javascript">
+                function checkTime(element)
+                {
+                    var tstring = element.value;
+                    var hr = parseInt(tstring.split(":")[0]);
+                    var min = parseInt(tstring.split(":")[1]);
+                    console.log(hr+min);
+                    if(hr<8){
+                        alert("Shows Must Start After 8 AM");
+                    }
+                    else if(hr>=23&&min>=1)
+                    {
+                        alert("Shows Must Start Before 11 PM");
+                    }
+                }
+        </script>
         <form action="/added" method="post">
             <div class="container">
                 <h1>Add New Movies</h1>
@@ -29,7 +45,9 @@
                         <option>Hindi</option>
                         <option>English</option>
                     </select>
-
+                    <input type="date" id="fromdate" min={{date}}>
+                    <input type="date" id="todate" min={{date}}>
+                    <input type="time" id="timeslot" min="08:00" max="23:00" onchange="checkTime(this)">
                     <label for="description"><b>Description</b></label>
                     <textarea id="description" name="description" rows="10" cols="30"></textarea>
 

@@ -2,10 +2,11 @@ from flask import Flask, render_template,request,redirect,url_for # For flask im
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
+from datetime import date,time
 import pymongo
 from flask import jsonify, request
 from flask_pymongo import PyMongo
-client = MongoClient("mongodb://127.0.0.1:27017")
+client = MongoClient("mongodb+srv://tejas:1234@pocketsdb-i09wt.mongodb.net/test?retryWrites=true&w=majority")
 db = client.mymongodb
 registered_users = db.registered
 movies= db.movies
@@ -25,7 +26,10 @@ def homepg():
     psw=request.values.get("psw")
     if (email=="admin" and psw=="admin" and app.config['LAST']=="login.html"):
         app.config['LAST']="homepg.html"
-        return render_template("admin.html")
+        today = date.today()
+        tdate = str(today.strftime("%Y-%m-%d"))
+        print(tdate)
+        return render_template("admin.html",date=tdate)
     if (app.config['LAST']=="login.html"):
         for r in registered_users.find():
             if (r["email"]==email and r["psw"]==psw):
