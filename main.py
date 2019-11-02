@@ -6,6 +6,7 @@ from datetime import date,time
 import pymongo
 from flask import jsonify, request
 from flask_pymongo import PyMongo
+from homepg import hpg
 client = MongoClient("mongodb://127.0.0.1:27017")
 db = client.mymongodb
 registered_users = db.registered
@@ -45,46 +46,7 @@ def landing():
         c.append(info)
     app.config['LAST']="landing.html"
     return render_template("landing.html",c=c,l=l)
-@app.route("/homepg", methods=['GET','POST'])
-def homepg():
-    email=request.values.get("email")
-    psw=request.values.get("psw")
-    if (email=="admin" and psw=="admin"):
-        app.config['LAST']="homepg.html"
-        today = date.today()
-        tdate = str(today.strftime("%Y-%m-%d"))
-        print(tdate)
-        return render_template("admin.html",date=tdate)
-    if (app.config['LAST']=="login.html" or email!=None):
-        for r in registered_users.find():
-            if (r["email"]==email and r["psw"]==psw):
-                app.config['LAST']="landing.html"
-                c=[]
-                info={} 
-                l=0
-                for r in movies.find():
-                    l=l+1
-                    info['movie']=r['movie']
-                    info['actor']=r['actor']
-                    info['actress']=r['actress']
-                    info['language']=r['language']
-                    info['description']=r['description']
-                    info['director']=r['director']
-                    info['imageurl']=r['imageurl']
-                    info['timeslot']=r['timeslot']
-                    info['fromdate']=r['fromdate']
-                    info['todate']=r['todate']
-                    info['genre']=r['genre']
-                    c.append(info)
-                return render_template("landing.html",c=c,l=l)
-            else:
-                app.config['LAST']="homepg.html"
-                return render_template("error.html")
-    if (app.config['LAST']=="login.html"):
-        app.config['LAST']="homepg.html"
-        return render_template("error.html")
-    else:
-        return render_template("homepg.html")
+app.register_blueprint(hpg)
 @app.route("/regSuccess", methods=['GET','POST'])
 def regSuccess():
     email=request.values.get("email")
@@ -121,6 +83,19 @@ def payment():
 def seats():
     app.config['LAST']="seats.html"
     return render_template("seats.html")
+@app.route("/description/<moviename>", methods=['GET','POST'])
+def description(moviename):
+    app.config['LAST']="description.html"
+    for r in movies.find():
+        if (r["movie"]==moviename):
+            moviename=r["description"]
+            actor=r["actor"]
+            actress=r["actress"]
+            director=r["director"]
+            genre=r["genre"]
+            lang=r["language"]
+            imageurl=r["imageurl"]
+    return render_template("description.html",moviename=moviename,actor=actor,actress=actress,director=director,genre=genre,lang=lang,imageurl=imageurl)
 @app.route("/added", methods=['GET','POST'])
 def added():
     movie=request.values.get("movie")

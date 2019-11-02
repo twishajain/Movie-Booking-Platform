@@ -16,7 +16,7 @@ hpg=Blueprint("hpg","hpg")
 def homepg():
     email=request.values.get("email")
     psw=request.values.get("psw")
-    if (email=="admin" and psw=="admin"):
+    if (email=='admin@gmail.com' and psw=="admin@gmail.com"):
         today = date.today()
         tdate = str(today.strftime("%Y-%m-%d"))
         print(tdate)

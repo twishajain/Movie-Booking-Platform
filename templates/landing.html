@@ -24,7 +24,7 @@ alert(x)
           </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="{{ url_for('booktickets') }}">Book Tickets</a></li>
+            <li><a href=>Book Tickets</a></li>
             <li><a href="#">Cancel Tickets</a></li>
             <li><a href="#">Logout</a></li>
           </ul>
@@ -157,14 +157,14 @@ alert(x)
               </div>
             </div>
             <div class="movie-card">
-                <img width="600" height="400" src="https://cdn3.movieweb.com/i/movie/4hJVgUIxcz1IsaRwxOAJR2qxAnYoqV/384:50/Twilight.jpg" style="width:300px">
+                <a href="{{ url_for('description',moviename='Twilight') }}"><img width="600" height="400" src="https://cdn3.movieweb.com/i/movie/4hJVgUIxcz1IsaRwxOAJR2qxAnYoqV/384:50/Twilight.jpg" style="width:300px"></a>
                 <div class="container">
                   <h4><b> Twilight</b></h4>
                   <p>&#x2764;&nbsp;92%&nbsp;Drama|Biography|History</p>
                 </div>
               </div>
               <div class="movie-card">
-                  <img  width="600" height="400" src="https://i.pinimg.com/originals/0d/d8/84/0dd884cb6b79f85d3c43d65c45b3aa43.jpg" style="width:300px">
+                  <a href="{{ url_for('description',moviename='The Age of Adaline') }}"><img  width="600" height="400" src="https://i.pinimg.com/originals/0d/d8/84/0dd884cb6b79f85d3c43d65c45b3aa43.jpg" style="width:300px"></a>
                   <div class="container">
                     <h4><b> The&nbsp;&nbsp;Age&nbsp;&nbsp;Of&nbsp;&nbsp;Adaline</b></h4>
                     <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
