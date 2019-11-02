@@ -113,7 +113,7 @@ def admin():
 def login():
     app.config['LAST']="login.html"
     return render_template("login.html")
-@app.route("/seats")
+@app.route("/seats", methods=['GET','POST'])
 def seats():
     app.config['LAST']="seats.html"
     return render_template("seats.html")
