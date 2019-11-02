@@ -1,6 +1,7 @@
 from flask import Flask, render_template,request,redirect,url_for # For flask implementation
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
+from homepg import hpg
 import os
 from datetime import date,time
 import pymongo
@@ -12,6 +13,7 @@ registered_users = db.registered
 movies= db.movies
 app = Flask(__name__)
 app.config['LAST']=""
+app.register_blueprint(hpg)
 @app.route("/")
 def home():
     app.config['LAST']="homepg.html"
@@ -20,67 +22,6 @@ def home():
 def terms():
     app.config['LAST']="terms.html"
     return render_template("terms.html")
-@app.route("/landing", methods=['GET','POST'])
-def landing():
-    c=[]
-    info={} 
-    l=0
-    for r in movies.find():
-        l=l+1
-        info['movie']=r['movie']
-        info['actor']=r['actor']
-        info['actress']=r['actress']
-        info['language']=r['language']
-        info['description']=r['description']
-        info['director']=r['director']
-        info['imageurl']=r['imageurl']
-        info['timeslot']=r['timeslot']
-        info['fromdate']=r['fromdate']
-        info['todate']=r['todate']
-        info['genre']=r['genre']
-        c.append(info)
-    app.config['LAST']="landing.html"
-    return render_template("landing.html",c=c,l=l)
-@app.route("/homepg", methods=['GET','POST'])
-def homepg():
-    email=request.values.get("email")
-    psw=request.values.get("psw")
-    if (email=="admin" and psw=="admin"):
-        app.config['LAST']="homepg.html"
-        today = date.today()
-        tdate = str(today.strftime("%Y-%m-%d"))
-        print(tdate)
-        return render_template("admin.html",date=tdate)
-    if (app.config['LAST']=="login.html" or email!=None):
-        for r in registered_users.find():
-            if (r["email"]==email and r["psw"]==psw):
-                app.config['LAST']="landing.html"
-                c=[]
-                info={} 
-                l=0
-                for r in movies.find():
-                    l=l+1
-                    info['movie']=r['movie']
-                    info['actor']=r['actor']
-                    info['actress']=r['actress']
-                    info['language']=r['language']
-                    info['description']=r['description']
-                    info['director']=r['director']
-                    info['imageurl']=r['imageurl']
-                    info['timeslot']=r['timeslot']
-                    info['fromdate']=r['fromdate']
-                    info['todate']=r['todate']
-                    info['genre']=r['genre']
-                    c.append(info)
-                return render_template("landing.html",c=c,l=l)
-            else:
-                app.config['LAST']="homepg.html"
-                return render_template("error.html")
-    if (app.config['LAST']=="login.html"):
-        app.config['LAST']="homepg.html"
-        return render_template("error.html")
-    else:
-        return render_template("homepg.html")
 @app.route("/regSuccess", methods=['GET','POST'])
 def regSuccess():
     email=request.values.get("email")
