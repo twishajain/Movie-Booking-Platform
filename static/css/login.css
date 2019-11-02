@@ -1,8 +1,25 @@
+@font-face{
+  font-family: Simplifica;
+  src: url(https://github.com/erkkimon/prese/blob/master/fonts/simplifica/simplifica.woff);
+}
 .login-dark {
     height:1000px;
-    background:#475d62 url(../../assets/img/star-sky.jpg);
+    background:#475d62 url(https://backgroundcheckall.com/wp-content/uploads/2017/12/netflix-background-8.jpg);
     background-size:cover;
     position:relative;
+    
+  }
+  .login-dark h1{
+     color: #6BC5AB;
+     position :relative;
+     top : 50px;
+     font-family: Simplifica;
+
+  }
+  .login-box{
+    position: relative;
+    top: 300px;
+    left: 450px;
   }
   
   .login-dark form {
@@ -21,7 +38,8 @@
   
   .login-dark .illustration {
     text-align:center;
-    padding:15px 0 20px;
+    padding-top: 6px;
+    padding-bottom: 3px;
     font-size:100px;
     color:#2980ef;
   }
