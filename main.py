@@ -89,8 +89,9 @@ def added():
     fromdate=request.values.get("fromdate")
     todate=request.values.get("todate")
     timeslot=request.values.get("timeslot")
+    genre=request.values.get("genre")
     imageurl=request.values.get("imageurl")
-    movies.insert({ "movie":movie, "actor":actor, "actress":actress, "director":director, "language":language, "description":description, "imageurl":imageurl, "timeslot":timeslot, "fromdate":fromdate,"todate":todate})
+    movies.insert({ "movie":movie, "actor":actor, "actress":actress, "director":director, "language":language, "description":description, "imageurl":imageurl, "timeslot":timeslot, "fromdate":fromdate,"todate":todate, "genre": genre})
     app.config['LAST']="added.html"
     return render_template("added.html")
 if __name__ == "__main__":
