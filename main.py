@@ -22,7 +22,25 @@ def terms():
     return render_template("terms.html")
 @app.route("/landing", methods=['GET','POST'])
 def landing():
-    return render_template("landing.html")
+    c=[]
+    info={} 
+    l=0
+    for r in movies.find():
+        l=l+1
+        info['movie']=r['movie']
+        info['actor']=r['actor']
+        info['actress']=r['actress']
+        info['language']=r['language']
+        info['description']=r['description']
+        info['director']=r['director']
+        info['imageurl']=r['imageurl']
+        info['timeslot']=r['timeslot']
+        info['fromdate']=r['fromdate']
+        info['todate']=r['todate']
+        info['genre']=r['genre']
+        c.append(info)
+    app.config['LAST']="landing.html"
+    return render_template("landing.html",c=c,l=l)
 @app.route("/homepg", methods=['GET','POST'])
 def homepg():
     email=request.values.get("email")
@@ -37,7 +55,24 @@ def homepg():
         for r in registered_users.find():
             if (r["email"]==email and r["psw"]==psw):
                 app.config['LAST']="landing.html"
-                return render_template("landing.html")
+                c=[]
+                info={} 
+                l=0
+                for r in movies.find():
+                    l=l+1
+                    info['movie']=r['movie']
+                    info['actor']=r['actor']
+                    info['actress']=r['actress']
+                    info['language']=r['language']
+                    info['description']=r['description']
+                    info['director']=r['director']
+                    info['imageurl']=r['imageurl']
+                    info['timeslot']=r['timeslot']
+                    info['fromdate']=r['fromdate']
+                    info['todate']=r['todate']
+                    info['genre']=r['genre']
+                    c.append(info)
+                return render_template("landing.html",c=c,l=l)
             else:
                 app.config['LAST']="homepg.html"
                 return render_template("error.html")
