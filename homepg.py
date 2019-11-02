@@ -42,6 +42,5 @@ def homepg():
                     info['genre']=r['genre']
                     c.append(info)
                 return render_template("landing.html",c=c,l=l)
-            else:
-                return render_template("error.html")
+        return render_template("error.html")
     return render_template("homepg.html")

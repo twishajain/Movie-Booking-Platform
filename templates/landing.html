@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
 <script>
@@ -12,6 +17,19 @@ alert(x)
 </script>
 </head>
 <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">CineBook</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Book Tickets</a></li>
+            <li><a href="#">Cancel Tickets</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
 <div class="nav-bar">
   <p>BOOK MY SHOW: NAV BAR</p>
   <ul style="margin-top:-30px;">
@@ -26,7 +44,7 @@ alert(x)
 </div>
 
 <div class="mySlides fade">
-  <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:100%">
+  <img src="https://www.filmsourcing.com/wp-content/uploads/2013/03/howtolosefriendsandalienatepeople-poster.jpg" style="width:100%">
 </div>
 
 <div class="mySlides fade">
@@ -41,26 +59,33 @@ alert(x)
 </div>
 
 <div class="genres">
-  <h2> NOW SHOWING</h2>
+  <h2>COMEDY</h2>
   <div class="movie-listing">
       <div class="movie-card">
-          <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+          <img width="600" height="400" src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
           <div class="container" >
-            <h4><b> Bohemian&nbsp;&nbsp;Rhapsody</b></h4>
+            <h4><b> Housefull&nbsp;&nbsp;4</b></h4>
             <p>&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
           </div>
         </div>
         <div class="movie-card">
-            <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+            <img width="600" height="400" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlqnKTEFiOpUPQonUo5iXqJiTVShJH3rm-6IclcxfKnC4V7INT&s" style="width:300px">
+            <div class="container" >
+              <h4><b>3&nbsp;&nbsp;Idiots</b></h4>
+              <p>&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
+            </div>
+          </div>
+        <div class="movie-card">
+            <img width="600" height="400" src="https://www.filmsourcing.com/wp-content/uploads/2013/03/howtolosefriendsandalienatepeople-poster.jpg" style="width:300px">
             <div class="container">
-              <h4><b> Hidden&nbsp;&nbsp;Figures</b></h4>
+              <h4><b> How&nbsp;&nbsp;To&nbsp;&nbsp;Lose&nbsp;&nbsp;Friends&nbsp;&nbsp;And&nbsp;&nbsp;Alienate People</b></h4>
               <p>&#x2764;&nbsp;92%&nbsp;Drama|Biography|History</p>
             </div>
           </div>
           <div class="movie-card">
-              <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+              <img width="600" height="400" src="https://m.media-amazon.com/images/M/MV5BMjA2NzEzNjIwNl5BMl5BanBnXkFtZTgwNzgwMTEzNzE@._V1_.jpg" style="width:300px">
               <div class="container">
-                <h4><b> Black&nbsp;&nbsp;Panther</b></h4>
+                <h4><b> Central&nbsp;&nbsp;Intelligence</b></h4>
                 <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
               </div>
             </div>
@@ -76,26 +101,33 @@ alert(x)
 <br>
 <br>
 <div class="genres">
-    <h2> DRAMA</h2>
+    <h2>ACTION</h2>
     <div class="movie-listing">
         <div class="movie-card">
-            <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+            <img  width="600" height="400" src="http://blog.karachicorner.com/wp-content/uploads/2013/04/Bullet+to+the+Head+movie+posters.jpg" style="width:300px">
             <div class="container" >
-              <h4><b> Bohemian&nbsp;&nbsp;Rhapsody</b></h4>
+              <h4><b> Shoot&nbsp;&nbsp;Out</b></h4>
               <p >&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
             </div>
           </div>
           <div class="movie-card">
-              <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+              <img  width="600" height="400" src="https://m.media-amazon.com/images/M/MV5BYmZlN2NiNzMtMjdmOS00OGQ3LTkxMTctOTM3MWQ0ZGEyMjM0XkEyXkFqcGdeQXVyMzQwMTY2Nzk@._V1_.jpg" style="width:300px">
               <div class="container">
-                <h4><b> Hidden&nbsp;&nbsp;Figures</b></h4>
+                <h4><b> Avengement</b></h4>
                 <p>&#x2764;&nbsp;92%&nbsp;Drama|Biography|History</p>
               </div>
             </div>
             <div class="movie-card">
-                <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+                <img  width="600" height="400" src="https://m.media-amazon.com/images/M/MV5BNzhlYjE5MjMtZDJmYy00MGZmLTgwN2MtZGM0NTk2ZTczNmU5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" style="width:300px">
                 <div class="container">
-                  <h4><b> Black&nbsp;&nbsp;Panther</b></h4>
+                  <h4><b> Terminator:&nbsp;&nbsp;Dark&nbsp;&nbsp;Fate</b></h4>
+                  <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
+                </div>
+              </div>
+              <div class="movie-card">
+                <img  width="600" height="400" src="https://rukminim1.flixcart.com/image/832/832/jf8khow0/poster/a/u/h/small-hollywood-movie-poster-blade-runner-2049-ridley-scott-original-imaf3qvx88xenydd.jpeg?q=70" style="width:300px">
+                <div class="container">
+                  <h4><b> Blade&nbsp;&nbsp;Runner&nbsp;&nbsp;2049</b></h4>
                   <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
                 </div>
               </div>
@@ -110,27 +142,31 @@ alert(x)
 <br>
 <br>
 <br>
+<br>
+<br>
   <div class="genres">
-      <h2> ROMANCE</h2>
+    <br>
+    <br>
+      <h2 align="left"> DRAMA</h2>
       <div class="movie-listing">
           <div class="movie-card">
-              <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+              <img  width="600" height="400" src="https://www.christianforums.com/media/breakthrough-dvd-cover-01.61853/full" style="width:300px">
               <div class="container">
-                <h4><b> Bohemian&nbsp;&nbsp;Rhapsody</b></h4>
+                <h4><b> Breakthrough</b></h4>
                 <p>&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
               </div>
             </div>
             <div class="movie-card">
-                <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+                <img width="600" height="400" src="https://cdn3.movieweb.com/i/movie/4hJVgUIxcz1IsaRwxOAJR2qxAnYoqV/384:50/Twilight.jpg" style="width:300px">
                 <div class="container">
-                  <h4><b> Hidden&nbsp;&nbsp;Figures</b></h4>
+                  <h4><b> Twilight</b></h4>
                   <p>&#x2764;&nbsp;92%&nbsp;Drama|Biography|History</p>
                 </div>
               </div>
               <div class="movie-card">
-                  <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px">
+                  <img  width="600" height="400" src="https://i.pinimg.com/originals/0d/d8/84/0dd884cb6b79f85d3c43d65c45b3aa43.jpg" style="width:300px">
                   <div class="container">
-                    <h4><b> Black&nbsp;&nbsp;Panther</b></h4>
+                    <h4><b> The&nbsp;&nbsp;Age&nbsp;&nbsp;Of&nbsp;&nbsp;Adaline</b></h4>
                     <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
                   </div>
                 </div>
