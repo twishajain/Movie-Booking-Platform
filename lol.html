@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script language="javascript">
+
+$(function () {
+    $("#txtFrom").datepicker({
+        minDate: 0,
+        maxDate:15,
+        onSelect: function (selected) {
+            var dt = new Date(selected);
+            dt.setDate(dt.getDate() + 1);
+            $("#txtTo").datepicker("option", "minDate", dt);
+        }
+   });
+});
+function checkTime(element)
+                {
+                    var tstring = element.value;
+                    var hr = parseInt(tstring.split(":")[0]);
+                    var min = parseInt(tstring.split(":")[1]);
+                    console.log(hr+min);
+                    if(hr<8){
+                        alert("Shows Must Start After 8 AM");
+                    }
+                    else if(hr>=23&&min>=1)
+                    {
+                        alert("Shows Must Start Before 11 PM");
+                    }
+                }
+
+</script>
+       </head>
+    <body>
+        <CENTER>BOOK NOW </CENTER>
+             <div id="qe">
+<br>
+<br>
+<br>
+
+Choose CINEMA:
+<select id="slct1">
+  <option value=""></option>
+   <option value="pvr">pvr</option>
+   <option value="inox">inox</option>
+   <option value="bharat">bharat</option>
+</select>
+</div>
+<br>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+    <td>
+        NOW:
+    </td>
+    <td>
+        <input type="text" id="txtFrom" />
+    </td>
+    
+       
+</tr>
+</table>
+<hr>
+<hr>
+<div id="id10">
+   <label for="qwt">CHOOSE YOUR SLOT:</label>
+<br>
+<input type="time" id="timeslot" name="timeslot" min="08:00" max="23:00" onchange="checkTime(this)">
+    </div>
+    
+<hr>
+<hr>
+    <div id="id12">
+CHOOSE SEATS:
+<select id="slct4">
+
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+  
+ 
+
+  
+</select>
+<hr/>
+</div>
+<hr>
+<hr>
+
+ <button type="submit" class="sdd">SIGN IN</button>
+
+    </body>
+    </html>
+
