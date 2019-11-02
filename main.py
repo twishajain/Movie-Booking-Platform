@@ -20,6 +20,10 @@ def home():
 def terms():
     app.config['LAST']="terms.html"
     return render_template("terms.html")
+@app.route("/booktickets",  methods=['GET','POST'])
+def booktickets():
+    app.config['LAST']="booktickets.html"
+    return render_template("booktickets.html")
 @app.route("/landing", methods=['GET','POST'])
 def landing():
     c=[]
