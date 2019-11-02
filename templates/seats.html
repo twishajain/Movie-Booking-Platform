@@ -92,9 +92,9 @@ function recalculateTotal(sc) {
              <ul id="selected-seats"></ul>
              <p>Tickets: <span id="counter">0</span></p>
              <p>Total: <b>Rs. <span id="total">0</span></b></p>
-
-             <button class="checkout-button">BUY</button>
-
+			<form action="/payment">
+             <button class="checkout-button" type="submit">BUY</button>
+			</form>
              <div id="legend"></div>
          </div>
          <div style="clear:both"></div>
