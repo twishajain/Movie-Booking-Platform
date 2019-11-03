@@ -15,7 +15,6 @@
 			'{% for elem in filled %}'
 				fill.push('{{ elem }}');
 			'{% endfor %}'
-			alert(fill);
             var price = 150; //price
 $(document).ready(function() {
 	var $cart = $('#selected-seats'), //Sitting Area
@@ -95,6 +94,8 @@ function recalculateTotal(sc) {
 
 function addToInput(sc) {
 	$("#seatlist").val(s);
+	$("#numseats").val($("#counter").text());
+	console.log($("#counter").text());
 	console.log($("#seatlist").val());
 }
 
@@ -113,6 +114,7 @@ function addToInput(sc) {
              <p>Total: <b>Rs. <span id="total">0</span></b></p>
 			 <form method="POST" action="/payment">
 			 <input id="seatlist" hidden name="seatlist" />
+			 <input id="numseats" hidden name="numseats">
              <button id="button" class="checkout-button" type="submit">BUY</button>
 			</form>
              <div id="legend"></div>
