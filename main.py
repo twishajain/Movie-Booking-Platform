@@ -158,7 +158,15 @@ def added():
     return render_template("added.html")
 @app.route("/orders", methods=['GET','POST'])
 def orders():
-    return render_template("orders.html")
+    l=[]
+    h=[]
+    for r in bookings.find():
+        if (r["email"]==app.config['CURRUSER']):
+            h.append(r["movie"])
+            h.append(r["seats"])
+        l.append(h)
+    print (l)
+    return render_template("orders.html",arr=l)
 @app.route("/homepg", methods=['GET','POST'])
 def homepg():
     email=request.values.get("email")
