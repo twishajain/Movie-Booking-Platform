@@ -6,7 +6,6 @@ from datetime import date,time
 import pymongo
 from flask import jsonify, request
 from flask_pymongo import PyMongo
-from homepg import hpg
 client = MongoClient("mongodb://127.0.0.1:27017")
 db = client.mymongodb
 registered_users = db.registered
@@ -60,7 +59,6 @@ def landing():
         c.append(info)
     app.config['LAST']="landing.html"
     return render_template("landing.html",c=c,l=l)
-app.register_blueprint(hpg)
 @app.route("/regSuccess", methods=['GET','POST'])
 def regSuccess():
     email=request.values.get("email")
@@ -152,5 +150,37 @@ def added():
     movies.insert({ "movie":movie, "actor":actor, "actress":actress, "director":director, "language":language, "description":description, "imageurl":imageurl, "timeslot":timeslot, "fromdate":fromdate,"todate":todate, "genre": genre})
     app.config['LAST']="added.html"
     return render_template("added.html")
+@app.route("/homepg", methods=['GET','POST'])
+def homepg():
+    email=request.values.get("email")
+    psw=request.values.get("psw")
+    if (email=='admin@gmail.com' and psw=="admin@gmail.com"):
+        today = date.today()
+        tdate = str(today.strftime("%Y-%m-%d"))
+        print(tdate)
+        return render_template("admin.html",date=tdate)
+    if (email!=None):
+        for r in registered_users.find():
+            if (r["email"]==email and r["psw"]==psw):
+                c=[]
+                info={} 
+                l=0
+                for r in movies.find():
+                    l=l+1
+                    info['movie']=r['movie']
+                    info['actor']=r['actor']
+                    info['actress']=r['actress']
+                    info['language']=r['language']
+                    info['description']=r['description']
+                    info['director']=r['director']
+                    info['imageurl']=r['imageurl']
+                    info['timeslot']=r['timeslot']
+                    info['fromdate']=r['fromdate']
+                    info['todate']=r['todate']
+                    info['genre']=r['genre']
+                    c.append(info)
+                return render_template("landing.html",c=c,l=l)
+        return render_template("error.html")
+    return render_template("homepg.html")
 if __name__ == "__main__":
     app.run(debug=True)
