@@ -166,7 +166,20 @@ def orders():
             h.append(r["seats"])
         l.append(h)
     print (l)
-    return render_template("orders.html",arr=l[0],name=app.config['CURRUSER'])
+
+    return render_template("orders.html",arr=l[0])
+@app.route("/cancel", methods=['GET','POST'])
+def cancel():
+    l=[]
+    h=[]
+    for r in bookings.find():
+        if (r["email"]==app.config['CURRUSER']):
+            h.append(r["movie"])
+            h.append(r["seats"])
+        l.append(h)
+    print (l)
+    return render_template("cancel.html",arr=l[0])   
+
 @app.route("/homepg", methods=['GET','POST'])
 def homepg():
     email=request.values.get("email")
