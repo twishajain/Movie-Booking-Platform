@@ -78,23 +78,31 @@ def login():
     return render_template("login.html")
 @app.route("/payment", methods=['POST','GET'])
 def payment():
+    y=[]
+    n=0
+    for r in theatres.find():
+        if(r["name"]=="Bharath Cinemas"):
+            y=r["filled"]
+            n=r["num"]
+    print("y:",y)
     sel_seats=request.values.get("seatlist")
     sel_seats=sel_seats.split("x")
-    print(sel_seats)
+    sel_seats=y+sel_seats
+    numseats=request.values.get("numseats")
+    print("num:",n)
     theatres.remove({"name":"Bharath Cinemas"})
-    theatres.insert({"name":"Bharath Cinemas","filled":sel_seats,"num":2})
+    theatres.insert({"name":"Bharath Cinemas","filled":sel_seats,"num":n})
     app.config['LAST']="payment.html"
-    return render_template("payment.html")
+    return render_template("payment.html",num=numseats)
 @app.route("/seats", methods=['GET','POST'])
 def seats():
     filled=[]
+    num=0
     for r in theatres.find():
         print(r["filled"])
         filled=r["filled"]
         num=r["num"]
-    # print(filled)
-    # for i in range(len(filled)):
-    #     filled[i] = '_'.join([str(int(i)) for i in filled[i].split("_")])
+
     app.config['LAST']="seats.html"
     return render_template("seats.html",filled=filled,n=num)
 @app.route("/description/<moviename>", methods=['GET','POST'])

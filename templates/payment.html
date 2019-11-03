@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {
@@ -110,7 +111,17 @@ span.price {
 </style>
 </head>
 <body>
-
+<script>
+  
+  $(document).ready(function(){
+    var n="{{num}}"
+  var x=150*parseInt(n);
+  console.log(x);
+  var y="Rs."+x;
+  console.log(y);
+    $("#price").html("<b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+y+"</b>");})
+  
+</script>
 <h2> Checkout Form</h2>
 
 <div class="row">
@@ -175,7 +186,7 @@ span.price {
   <div class="col-25">
     <div class="container">
       
-      <p>Total <span class="price" style="color:black"><b>$1</b></span></p>
+      <p>Total <span id="price" style="color:black"></span></p>
     </div>
   </div>
 </div>
