@@ -79,6 +79,7 @@ def login():
 @app.route("/payment", methods=['POST','GET'])
 def payment():
     sel_seats=request.values.get("seatlist")
+    sel_seats=sel_seats.split("x")
     print(sel_seats)
     theatres.remove({"name":"Bharath Cinemas"})
     theatres.insert({"name":"Bharath Cinemas","filled":sel_seats,"num":2})
