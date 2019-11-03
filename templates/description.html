@@ -98,6 +98,7 @@
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+		var moviename='{{name}}';
         var name='{{moviename}}';
         var actor='{{actor}}';
         var actress='{{actress}}';
@@ -105,13 +106,15 @@
         var imageurl='{{imageurl}}';
         var genre='{{genre}}';
         var lang='{{lang}}';
-    console.log(name);
+    console.log(moviename);
+	document.getElementById("movie").innerHTML+=moviename;
     document.getElementById("d1").innerHTML+=name;
     document.getElementById("d2").innerHTML+=actor;
     document.getElementById("d3").innerHTML+=actress;
     document.getElementById("d4").innerHTML+=director;
     document.getElementById("d5").innerHTML+=genre;
     document.getElementById("d6").innerHTML+=lang;
+	var s2=document.getElementById('movie').innerHTML;
 }, false);
 </script>
 </head>
@@ -125,6 +128,7 @@
 </div>
 <hr>
 <br>
+<p id="movie" hidden></p>
 <p id="d"><img src='{{imageurl}}'> </img></p>
 <p id="d1">Description: </p>
 <p id="d2">Actor:</p>
@@ -132,5 +136,5 @@
 <p id="d4">Director:</p>
 <p id="d5">Genre:</p>
 <p id="d6">Lang:</p>
-<p><a href="{{ url_for('booktickets') }}">Book Tickets</a></p>
+<p><a id="a1" href="{{ url_for('booktickets') }}">Book Tickets</a></p>
 </body>

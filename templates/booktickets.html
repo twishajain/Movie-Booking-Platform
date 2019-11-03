@@ -33,7 +33,11 @@ function checkTime(element)
                         alert("Shows Must Start Before 11 PM");
                     }
                 }
-
+document.addEventListener('DOMContentLoaded', function() {
+        var t='{{timeslot}}';
+        console.log(t+"hi")
+    document.getElementById("t").innerHTML+=t;
+}, false);
 </script>
        </head>
     <body>
@@ -45,10 +49,10 @@ function checkTime(element)
 <form action="/seats" method="post">
 Choose CINEMA:
 <select id="slct1">
-  <option value=""></option>
-   <option value="pvr">pvr</option>
-   <option value="inox">inox</option>
-   <option value="bharat">bharat</option>
+  <option value="" disabled selected></option>
+   <option value="Inox">Inox</option>
+   <option value="Bharat Cinemas">
+       Bharat</option>
 </select>
 </div>
 <br>
@@ -70,7 +74,7 @@ Choose CINEMA:
 <div id="id10">
    <label for="qwt">CHOOSE YOUR SLOT:</label>
 <br>
-<input type="time" id="timeslot" name="timeslot" min="08:00" max="23:00" onchange="checkTime(this)">
+<p id="t">Time Slot: </p>
     </div>
     
 <hr>

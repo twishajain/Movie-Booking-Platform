@@ -14,6 +14,7 @@ movies= db.movies
 theatres=db.theatres
 app = Flask(__name__)
 app.config['LAST']=""
+app.config['CURRMOVIE']=""
 @app.route("/")
 def home():
     app.config['LAST']="homepg.html"
@@ -22,10 +23,21 @@ def home():
 def terms():
     app.config['LAST']="terms.html"
     return render_template("terms.html")
-@app.route("/booktickets",  methods=['GET','POST'])
+@app.route("/booktickets")
 def booktickets():
+    timeslot=""
+    minbooking=""
+    maxbooking=""
+    moviename=app.config['CURRMOVIE']
+    print(moviename)
+    for r in movies.find():
+        if(r["movie"]==moviename):
+            print(r["timeslot"])
+            minbooking=r["fromdate"]
+            maxbooking=r["todate"]
+            timeslot=r["timeslot"]
     app.config['LAST']="booktickets.html"
-    return render_template("booktickets.html")
+    return render_template("booktickets.html",moviename=moviename,timeslot=timeslot,minbooking=minbooking,maxbooking=maxbooking)
 @app.route("/landing", methods=['GET','POST'])
 def landing():
     c=[]
@@ -100,8 +112,10 @@ def seats():
 @app.route("/description/<moviename>", methods=['GET','POST'])
 def description(moviename):
     app.config['LAST']="description.html"
+    app.config['CURRMOVIE']=moviename
     for r in movies.find():
         if (r["movie"]==moviename):
+            name=r["movie"]
             moviename=r["description"]
             actor=r["actor"]
             actress=r["actress"]
@@ -109,7 +123,8 @@ def description(moviename):
             genre=r["genre"]
             lang=r["language"]
             imageurl=r["imageurl"]
-    return render_template("description.html",moviename=moviename,actor=actor,actress=actress,director=director,genre=genre,lang=lang,imageurl=imageurl)
+            print(name)
+    return render_template("description.html",name=name,moviename=moviename,actor=actor,actress=actress,director=director,genre=genre,lang=lang,imageurl=imageurl)
 @app.route("/added", methods=['GET','POST'])
 def added():
     movie=request.values.get("movie")
