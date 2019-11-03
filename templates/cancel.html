@@ -2,7 +2,7 @@
 
 <head>
     <title>
-        Booked Tickets
+        Cancel Tickets
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -16,13 +16,22 @@
             text-align: center;
             padding-bottom: 30px;
         }
-       
+        button{
+            padding:8px;
+            font-size: 20px;;
+            background-color:black;
+            border-color:lightseagreen;
+            color:lightseagreen;
+            margin-block-start: 10px;
+            margin-inline-start:420px;;
+            border-radius: 10px;
+            border-width: 5px;
+            
+        }
         p{
             display: inline;
             color: white;
            padding:10px;
-           font-size: 30px;
-           margin-left: 175px;;
             
         }
         hr{
@@ -47,7 +56,7 @@
                     </ul>
                   </div>
                 </nav>
-    <h2>TICKETS CURRENTLY BOOKED:</h2>
+    <h2>CLICK ON MOVIE TO CANCEL TICKET</h2>
 
     <script>
         var x = '{{arr}}';
@@ -64,7 +73,7 @@
                 var x=fill[j+1].substring(0,fill[j+1].length-1).split(",");
                 x.shift();
                 x.toString();
-               var butt= document.createElement("p");
+               var butt= document.createElement("button");
                butt.innerHTML=fill[j];
                butt.className=j;
                var seats=document.createElement("p");
@@ -73,6 +82,13 @@
                var butt1= document.createElement("p");
                butt1.innerHTML=x+"<hr>";
                 butt1.className=j;
+                butt.addEventListener("click",function(){
+                    alert("Ticket has been Cancelled!");
+                    console.log(this.className)
+                    document.getElementsByClassName(this.className)[0].style.visibility='hidden';
+                document.getElementsByClassName(this.className)[1].style.visibility='hidden';
+                document.getElementsByClassName(this.className)[2].style.visibility='hidden';
+                })
                document.body.appendChild(butt);
                document.body.appendChild(seats)
                document.body.appendChild(butt1);
