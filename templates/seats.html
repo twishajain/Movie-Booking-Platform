@@ -1,13 +1,14 @@
 <html>
     <head>
-        <title>Book your seats!</title>
+		<title>Book your seats!</title>
         <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
          <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.seat-charts.css')}}">
-         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/seat.css')}}">
+		 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/seat.css')}}">
+		 
          <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> 
         <script src="{{ url_for('static', filename = 'js/jquery.seat-charts.js') }}"></script> 
     </head>
-    <body>
+    <body >
         <script>
 			var s="";
 			var n="{{n}}"
@@ -99,23 +100,21 @@ function addToInput(sc) {
 	console.log($("#seatlist").val());
 }
 
-        </script>
-        <div class="demo">
-            <div id="seat-map">
+		</script>
+		
+        <div class="demo" style="margin-left: 200px; margin-top: 100px;">
+            <div id="seat-map" >
              <div class="front">SCREEN</div>					
-         </div>
-         <div class="booking-details">
-             <p>Movie: <span> Gingerclown</span></p>
-             <p>Time: <span>November 3, 21:00</span></p>
+         </div> 
+         <div class="booking-details" style="float: left; margin-left:30px;">
 			 <p>Seat: </p>
-			 
              <ul id="selected-seats"></ul>
              <p>Tickets: <span id="counter">0</span></p>
              <p>Total: <b>Rs. <span id="total">0</span></b></p>
 			 <form method="POST" action="/payment">
 			 <input id="seatlist" hidden name="seatlist" />
 			 <input id="numseats" hidden name="numseats">
-             <button id="button" class="checkout-button" type="submit">BUY</button>
+             <button id="button" class="checkout-button" type="submit" >BUY</button>
 			</form>
              <div id="legend"></div>
          </div>
