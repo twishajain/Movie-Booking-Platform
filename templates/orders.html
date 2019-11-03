@@ -8,44 +8,77 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
-        body{
+        body {
             background-color: black;
         }
-        h2{
-            color:#D81F26;
+
+        h2 {
+            color: #D81F26;
             text-align: center;
             padding-bottom: 30px;
         }
-       
-        p{
+
+        p {
             display: inline;
             color: white;
-           font-size: 30px;
-           padding-left:70px;
-            
+            font-size: 30px;
+            padding-left: 70px;
+
         }
-        hr{
-           
-        }
+
+        hr {}
+
+
+        .input[type='radio']:after {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+        
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #ffa500;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+
+        
     </style>
 </head>
 
 <body>
-       
-                <nav class="navbar navbar-inverse">
-                  <div class="container-fluid">
-                    <div class="navbar-header">
-                      <a class="navbar-brand" href="#" style="color:#D81F26;">CineBook</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                      <li class="active" ><a href="{{ url_for('landing') }}" >Home</a></li>
-                      <li ><a href="{{ url_for('orders') }}">Profile</a></li>
-                      <li ><a href="{{ url_for('cancel') }}" >Cancel Tickets</a></li>
-                      <li ><a href="{{ url_for('login') }}">Logout</a></li>
-                      
-                    </ul>
-                  </div>
-                </nav>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="color:#D81F26;">CineBook</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('landing') }}">Home</a></li>
+                <li><a href="{{ url_for('orders') }}">Profile</a></li>
+                <li><a href="{{ url_for('cancel') }}">Cancel Tickets</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+
+            </ul>
+        </div>
+    </nav>
     <h2>TICKETS CURRENTLY BOOKED:</h2>
 
     <script>
@@ -60,21 +93,57 @@
         document.addEventListener('DOMContentLoaded', inp_text(), false);
         function inp_text() {
             for (var j = 0; j < i; j += 2) {
-                var x=fill[j+1].substring(0,fill[j+1].length-1).split(",");
+                var x = fill[j + 1].substring(0, fill[j + 1].length - 1).split(",");
                 x.shift();
                 x.toString();
-               var butt= document.createElement("p");
-               butt.innerHTML=fill[j];
-               butt.className=j;
-               var seats=document.createElement("p");
-               seats.innerHTML="<p>Seats:</p>";
-               seats.className=j;
-               var butt1= document.createElement("p");
-               butt1.innerHTML=x+"<hr>";
-                butt1.className=j;
-               document.body.appendChild(butt);
-               document.body.appendChild(seats)
-               document.body.appendChild(butt1);
+                var butt = document.createElement("p");
+                butt.innerHTML = fill[j];
+                butt.className = j;
+                var seats = document.createElement("p");
+                seats.innerHTML = "<p>Seats:</p>";
+                seats.className = j;
+                var butt1 = document.createElement("p");
+                butt1.innerHTML = x;
+                butt1.className = j;
+                document.body.appendChild(butt);
+                document.body.appendChild(seats);
+                document.body.appendChild(butt1);
+                var r = document.createElement("p");
+                r.innerHTML = "<p>RATING:</p>";
+                r.className = j;
+                document.body.appendChild(r);
+                var star = document.createElement("input");
+                star.setAttribute("type","radio");
+                star.className="rating";
+                star.innerHTML="<label for=\"star5\" title=\"Rocks!\">5 stars</label>";
+
+                document.body.appendChild(star);
+                var star2 = document.createElement("input");
+                star2.setAttribute("type","radio");
+                star2.className="rating";
+                star2.innerHTML="<label for=\"star5\" title=\"Rocks!\">5 stars</label>";
+
+                document.body.appendChild(star2);
+                var star3 = document.createElement("input");
+                star3.setAttribute("type","radio");
+                star3.className="rating";
+                star3.innerHTML="<label for=\"star5\" title=\"Rocks!\">5 stars</label>";
+
+                document.body.appendChild(star3);
+                var star4 = document.createElement("input");
+                star4.setAttribute("type","radio");
+                star4.className="rating";
+                star4.innerHTML="<label for=\"star5\" title=\"Rocks!\">5 stars</label>";
+
+                document.body.appendChild(star4);
+                var star5 = document.createElement("input");
+                star5.setAttribute("type","radio");
+                star5.className="rating";
+                star5.innerHTML="<label for=\"star5\" title=\"Rocks!\">5 stars</label>";
+
+                document.body.appendChild(star5);
+                var h = document.createElement("hr");
+                document.body.appendChild(h);
 
             }
         }

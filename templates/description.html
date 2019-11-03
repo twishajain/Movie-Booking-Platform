@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>movie description</title>
+	<title>Movie Description</title>
 	<style type="text/css">
+	button{
+            padding:8px;
+            font-size: 20px;;
+            background-color:black;
+            border-color:lightseagreen;
+            color:lightseagreen;
+            
+            border-radius: 10px;
+            border-width: 5px;
+            
+        }
 		.topnav h3{
 			color:#90f0f0;
 			display: inline;
@@ -114,11 +125,11 @@
 <a href="{{ url_for('landing') }}"><button>BACK</button></a>
 <p id="movie" hidden></p>
 <p id="d" style="text-align: center;"><img src='{{imageurl}}'> </img></p>
-<p id="d1" style="text-align: center;">Description: </p>
-<p id="d2" style="text-align: center;">Actor:</p>
-<p id="d3" style="text-align: center;">Actress:</p>
-<p id="d4" style="text-align: center;">Director:</p>
-<p id="d5" style="text-align: center;">Genre:</p>
-<p id="d6" style="text-align: center;">Lang:</p>
-<p style="text-align: center;"><a id="a1" href="{{ url_for('booktickets') }}">Book Tickets</a></p>
+<p id="d1" style="text-align: center; padding:40px;"><b style="font-size: 25px;;";>Description : </b></p>
+<p id="d2" style="text-align: center; padding:10px"><b style="font-size: 25px;;";>Actor : </b></p>
+<p id="d3" style="text-align: center; padding:10px"><b style="font-size: 25px;;";>Actress : </b></p>
+<p id="d4" style="text-align: center; padding:10px"><b style="font-size: 25px;;";>Director : </b></p>
+<p id="d5" style="text-align: center; padding:10px"><b style="font-size: 25px;;";>Genre : </b></p>
+<p id="d6" style="text-align: center; padding:10px"><b style="font-size: 25px;;";>Language : </b></p>
+<p style="text-align: center;"><a id="a1" href="{{ url_for('booktickets') }}"><button >Book Tickets</button></a></p>
 </body>
