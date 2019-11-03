@@ -11,6 +11,7 @@ client = MongoClient("mongodb://127.0.0.1:27017")
 db = client.mymongodb
 registered_users = db.registered
 movies= db.movies
+theatres=db.theatres
 app = Flask(__name__)
 app.config['LAST']=""
 @app.route("/")
@@ -75,14 +76,26 @@ def admin():
 def login():
     app.config['LAST']="login.html"
     return render_template("login.html")
-@app.route("/payment")
+@app.route("/payment", methods=['POST','GET'])
 def payment():
+    sel_seats=request.values.get("seatlist")
+    print(sel_seats)
+    theatres.remove({"name":"Bharath Cinemas"})
+    theatres.insert({"name":"Bharath Cinemas","filled":sel_seats,"num":2})
     app.config['LAST']="payment.html"
     return render_template("payment.html")
 @app.route("/seats", methods=['GET','POST'])
 def seats():
+    filled=[]
+    for r in theatres.find():
+        print(r["filled"])
+        filled=r["filled"]
+        num=r["num"]
+    # print(filled)
+    # for i in range(len(filled)):
+    #     filled[i] = '_'.join([str(int(i)) for i in filled[i].split("_")])
     app.config['LAST']="seats.html"
-    return render_template("seats.html")
+    return render_template("seats.html",filled=filled,n=num)
 @app.route("/description/<moviename>", methods=['GET','POST'])
 def description(moviename):
     app.config['LAST']="description.html"

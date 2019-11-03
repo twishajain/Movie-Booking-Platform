@@ -9,6 +9,13 @@
     </head>
     <body>
         <script>
+			var s="";
+			var n="{{n}}"
+			var fill=[];
+			'{% for elem in filled %}'
+				fill.push('{{ elem }}');
+			'{% endfor %}'
+			alert(fill);
             var price = 150; //price
 $(document).ready(function() {
 	var $cart = $('#selected-seats'), //Sitting Area
@@ -41,13 +48,18 @@ $(document).ready(function() {
 			]					
 		},
 		click: function () { //Click event
+			// addToInput(sc);
 			if (this.status() == 'available') { //optional seat
 				$('<li>R'+(this.settings.row+1)+' S'+this.settings.label+'</li>')
 					.attr('id', 'cart-item-'+this.settings.id)
 					.data('seatId', this.settings.id)
 					.appendTo($cart);
+				
+				// console.log(s);
 				$counter.text(sc.find('selected').length+1);
 				$total.text(recalculateTotal(sc)+price);
+				s+="x"+(this.settings.row+1)+"_"+(this.settings.label);
+				addToInput(sc);
 							
 				return 'selected';
 			} else if (this.status() == 'selected') { //Checked
@@ -68,7 +80,7 @@ $(document).ready(function() {
 		}
 	});
 	//sold seat
-	sc.get(['1_2', '4_4','4_5','6_6','6_7','8_5','8_6','8_7','8_8', '10_1', '10_2']).status('unavailable');
+	sc.get(fill).status('unavailable');
 		
 });
 //sum total money
@@ -80,6 +92,12 @@ function recalculateTotal(sc) {
 			
 	return total;
 }
+
+function addToInput(sc) {
+	$("#seatlist").val(s);
+	console.log($("#seatlist").val());
+}
+
         </script>
         <div class="demo">
             <div id="seat-map">
@@ -88,12 +106,14 @@ function recalculateTotal(sc) {
          <div class="booking-details">
              <p>Movie: <span> Gingerclown</span></p>
              <p>Time: <span>November 3, 21:00</span></p>
-             <p>Seat: </p>
+			 <p>Seat: </p>
+			 
              <ul id="selected-seats"></ul>
              <p>Tickets: <span id="counter">0</span></p>
              <p>Total: <b>Rs. <span id="total">0</span></b></p>
-			<form action="/payment">
-             <button class="checkout-button" type="submit">BUY</button>
+			 <form method="POST" action="/payment">
+			 <input id="seatlist" hidden name="seatlist" />
+             <button id="button" class="checkout-button" type="submit">BUY</button>
 			</form>
              <div id="legend"></div>
          </div>
