@@ -1,200 +1,237 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-<script>
-var z="{{l}}" //stores the number of movies
-var x="{{c[0]['movie']}}" //store moviename value for first entry in database
-var y="{{c[0]['genre']}}" //store genre of 1st movie
-alert(z)
-alert(x)
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+  <script>
+    var z = "{{l}}" //stores the number of movies
+    var x = "{{c[0]['movie']}}" //store moviename value for first entry in database
+    var y = "{{c[0]['genre']}}" //store genre of 1st movie
+  </script>
+  <style>
+    .genres h2 {
+      color: #D81F26;
+    }
+    
+  </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">CineBook</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="{{ url_for('orders') }}">Profile</a></li>
-            <li><a href="#">Cancel Tickets</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </div>
-      </nav>
-<div class="nav-bar">
-  <p>BOOK MY SHOW: NAV BAR</p>
-  <ul style="margin-top:-30px;">
-</ul>
-</div>
-<br>
-<div class="carousel">
-<div class="slideshow-container">
-<div class="mySlides fade">
-  <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:100%">
-  <button type="button" onclick="location.href='/seats';" value"Book" id="b1" name="b1" >Book Tickets</button>
-</div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#" style="color:#D81F26;">CineBook</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active" ><a href="{{ url_for('landing') }}" >Home</a></li>
+        <li ><a href="{{ url_for('booktickets') }}">Profile</a></li>
+        <li ><a href="{{ url_for('booktickets') }}" >Cancel Tickets</a></li>
+        <li ><a href="{{ url_for('login') }}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  <h1 style="color:#D81F26;text-align: center;">NOW SHOWING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+  <div class="carousel">
+    
+    <div class="slideshow-container">
+      <div class="mySlides">
+        <img src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg">
+      </div>
+      
+      <div class="mySlides">
+        <img src="https://www.entertainment-focus.com/wp-content/uploads/2017/10/Webp.net-resizeimage-46-770x433.jpg">
+      </div>
+     
+      <div class="mySlides">
+        <img src="http://www.3dmoviereviews.net/wp-content/uploads/2016/06/Central-Intelligence-810x400.jpg">
+      </div>
 
-<div class="mySlides fade">
-  <img src="https://www.filmsourcing.com/wp-content/uploads/2013/03/howtolosefriendsandalienatepeople-poster.jpg" style="width:100%">
-</div>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-<div class="mySlides fade">
-  <img src="ihttps://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:100%">
-</div>
-
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-</div>
-<br>
-</div>
-
-<div class="genres">
-  <h2>COMEDY</h2>
-  <div class="movie-listing">
-      <div class="movie-card">
-        <a href="{{ url_for('description',moviename='Housefull 4') }}"><img width="600" height="400" src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg" style="width:300px"></a>
-          <div class="container" >
-            <h4><b> Housefull&nbsp;&nbsp;4</b></h4>
-            <p>&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
-          </div>
-        </div>
-        <div class="movie-card">
-          <a href="{{ url_for('description',moviename='3 Idiots') }}"><img width="600" height="400" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlqnKTEFiOpUPQonUo5iXqJiTVShJH3rm-6IclcxfKnC4V7INT&s" style="width:300px"></a>
-            <div class="container" >
-              <h4><b>3&nbsp;&nbsp;Idiots</b></h4>
-              <p>&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
-            </div>
-          </div>
-        <div class="movie-card">
-          <a href="{{ url_for('description',moviename='How To Lose Friends And Alienate People') }}"><img width="600" height="400" src="https://www.filmsourcing.com/wp-content/uploads/2013/03/howtolosefriendsandalienatepeople-poster.jpg" style="width:300px"></a>
-            <div class="container">
-              <h4><b> How&nbsp;&nbsp;To&nbsp;&nbsp;Lose&nbsp;&nbsp;Friends&nbsp;&nbsp;And Alienate&nbsp;&nbsp;People</b></h4>
-              <p>&#x2764;&nbsp;92%&nbsp;Drama|Biography|History</p>
-            </div>
-          </div>
-          <div class="movie-card">
-            <a href="{{ url_for('description',moviename='Central Intelligence') }}"><img width="600" height="400" src="https://m.media-amazon.com/images/M/MV5BMjA2NzEzNjIwNl5BMl5BanBnXkFtZTgwNzgwMTEzNzE@._V1_.jpg" style="width:300px"></a>
-              <div class="container">
-                <h4><b> Central&nbsp;&nbsp;Intelligence</b></h4>
-                <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
-              </div>
-            </div>
+    </div>
+    <br>
   </div>
-</div>
 </br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+</br>
+</br>
+</br>
 <div class="genres">
-    <h2>ACTION</h2>
+    <h2 style="margin-left: 20px;">COMEDY</h2>
     <div class="movie-listing">
-        <div class="movie-card">
-          <a href="{{ url_for('description',moviename='Shoot Out') }}"><img  width="600" height="400" src="http://blog.karachicorner.com/wp-content/uploads/2013/04/Bullet+to+the+Head+movie+posters.jpg" style="width:300px"></a>
+        <div class="movie-card" style="margin-left: 10px;">
+          <a href="{{ url_for('description',moviename='Housefull 4') }}"><img width="250" height="300" src="https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg"></a>
             <div class="container" >
-              <h4><b> Shoot&nbsp;&nbsp;Out</b></h4>
-              <p >&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
+              <h4 style="color: white;"><b> Housefull&nbsp;&nbsp;4</b></h4>
+              <p style="color: white;">&#x2764;&nbsp;97%&nbsp;Comedy|Romance</p>
             </div>
           </div>
-          <div class="movie-card">
-            <a href="{{ url_for('description',moviename='Avengement') }}"><img  width="600" height="400" src="https://m.media-amazon.com/images/M/MV5BYmZlN2NiNzMtMjdmOS00OGQ3LTkxMTctOTM3MWQ0ZGEyMjM0XkEyXkFqcGdeQXVyMzQwMTY2Nzk@._V1_.jpg" style="width:300px"></a>
-              <div class="container">
-                <h4><b> Avengement</b></h4>
-                <p>&#x2764;&nbsp;92%&nbsp;Drama|Biography|History</p>
+          <div class="movie-card"style="margin-left: -60px;">
+            <a href="{{ url_for('description',moviename='3 Idiots') }}"><img width="250" height="300" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlqnKTEFiOpUPQonUo5iXqJiTVShJH3rm-6IclcxfKnC4V7INT&s" ></a>
+              <div class="container" >
+                <h4 style="color: white;"><b>3&nbsp;&nbsp;Idiots</b></h4>
+                <p style="color: white;">&#x2764;&nbsp;97%&nbsp;Comedy|Romance</p>
               </div>
             </div>
-            <div class="movie-card">
-              <a href="{{ url_for('description',moviename='Terminator Dark Fate') }}"><img  width="600" height="400" src="https://m.media-amazon.com/images/M/MV5BNzhlYjE5MjMtZDJmYy00MGZmLTgwN2MtZGM0NTk2ZTczNmU5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" style="width:300px"></a>
-                <div class="container">
-                  <h4><b> Terminator:&nbsp;&nbsp;Dark&nbsp;&nbsp;Fate</b></h4>
-                  <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
-                </div>
+          <div class="movie-card" style="margin-left: -60px;">
+            <a href="{{ url_for('description',moviename='How To Lose Friends And Alienate People') }}"><img width="250" height="300" src="https://www.filmsourcing.com/wp-content/uploads/2013/03/howtolosefriendsandalienatepeople-poster.jpg" ></a>
+              <div class="container">
+                <h4 style="color: white;"><b> How&nbsp;&nbsp;To&nbsp;&nbsp;Lose&nbsp;&nbsp;Friends&nbsp;&nbsp;And Alienate&nbsp;&nbsp;People</b></h4>
+                <p style="color: white;">&#x2764;&nbsp;92%&nbsp;Comedy|Action</p>
               </div>
-              <div class="movie-card">
-                  <a href="{{ url_for('description',moviename='Blade Runner 2049') }}"><img  width="600" height="400" src="https://rukminim1.flixcart.com/image/832/832/jf8khow0/poster/a/u/h/small-hollywood-movie-poster-blade-runner-2049-ridley-scott-original-imaf3qvx88xenydd.jpeg?q=70" style="width:300px"></a>
+            </div>
+            <div class="movie-card" style="margin-left: -50px;">
+              <a href="{{ url_for('description',moviename='Central Intelligence') }}"><img width="250" height="300" src="https://m.media-amazon.com/images/M/MV5BMjA2NzEzNjIwNl5BMl5BanBnXkFtZTgwNzgwMTEzNzE@._V1_.jpg" ></a>
                 <div class="container">
-                  <h4><b> Blade&nbsp;&nbsp;Runner&nbsp;&nbsp;2049</b></h4>
-                  <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
+                  <h4 style="color: white;"><b> Central&nbsp;&nbsp;Intelligence</b></h4>
+                  <p style="color: white;">&#x2764;&nbsp;87%&nbsp;Action|Comedy</p>
                 </div>
               </div>
     </div>
   </div>
-</br>
-</br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <hr style="color: #D81F26;"> 
+  
   <div class="genres">
-    <br>
-    <br>
-      <h2 align="left"> DRAMA</h2>
+      <h2 style="margin-left: 20px;">ACTION</h2>
       <div class="movie-listing">
-          <div class="movie-card">
-              <a href="{{ url_for('description',moviename='Breakthrough') }}"><img  width="600" height="400" src="https://www.christianforums.com/media/breakthrough-dvd-cover-01.61853/full" style="width:300px"></a>
-              <div class="container">
-                <h4><b> Breakthrough</b></h4>
-                <p>&#x2764;&nbsp;97%&nbsp;Drama|Music|Biography</p>
+          <div class="movie-card" style="margin-left: 10px;">
+            <a href="{{ url_for('description',moviename='Shoot Out') }}"><img width="250" height="300" src="http://blog.karachicorner.com/wp-content/uploads/2013/04/Bullet+to+the+Head+movie+posters.jpg" style="width:300px""></a>
+              <div class="container" >
+                <h4 style="color: white;"><b> Shoot&nbsp;&nbsp;Out</b></h4>
+                <p style="color: white;">&#x2764;&nbsp;97%&nbsp;Action|Adventure</p>
               </div>
             </div>
-            <div class="movie-card">
-                <a href="{{ url_for('description',moviename='Twilight') }}"><img width="600" height="400" src="https://cdn3.movieweb.com/i/movie/4hJVgUIxcz1IsaRwxOAJR2qxAnYoqV/384:50/Twilight.jpg" style="width:300px"></a>
-                <div class="container">
-                  <h4><b> Twilight</b></h4>
-                  <p>&#x2764;&nbsp;92%&nbsp;Drama|Biography|History</p>
+            <div class="movie-card"style="margin-left: -60px;">
+              <a href="{{ url_for('description',moviename='Avengement') }}"><img width="250" height="300" src="https://m.media-amazon.com/images/M/MV5BYmZlN2NiNzMtMjdmOS00OGQ3LTkxMTctOTM3MWQ0ZGEyMjM0XkEyXkFqcGdeQXVyMzQwMTY2Nzk@._V1_.jpg"></a>
+                <div class="container" >
+                  <h4 style="color: white;"><b>Avengement</b></h4>
+                  <p style="color: white;">&#x2764;&nbsp;97%&nbsp;Action|Adventure</p>
                 </div>
               </div>
-              <div class="movie-card">
-                  <a href="{{ url_for('description',moviename='The Age of Adaline') }}"><img  width="600" height="400" src="https://i.pinimg.com/originals/0d/d8/84/0dd884cb6b79f85d3c43d65c45b3aa43.jpg" style="width:300px"></a>
+            <div class="movie-card" style="margin-left: -60px;">
+              <a href="{{ url_for('description',moviename='Terminator Dark Fate') }}"><img width="250" height="300"src="https://m.media-amazon.com/images/M/MV5BNzhlYjE5MjMtZDJmYy00MGZmLTgwN2MtZGM0NTk2ZTczNmU5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" ></a>
+                  <h4 style="color: white;"><b> Terminator&nbsp;&nbsp;Dark&nbsp;&nbsp;Fate</b></h4>
+                  <p style="color: white;">&#x2764;&nbsp;92%&nbsp;Adventure|Action</p>
+                </div>
+              </div>
+              <div class="movie-card" style="margin-left: -50px;">
+                <a href="{{ url_for('description',moviename='Blade Runner 2049') }}"><img width="250" height="300"  src="https://rukminim1.flixcart.com/image/832/832/jf8khow0/poster/a/u/h/small-hollywood-movie-poster-blade-runner-2049-ridley-scott-original-imaf3qvx88xenydd.jpeg?q=70" ></a>
                   <div class="container">
-                    <h4><b> The&nbsp;&nbsp;Age&nbsp;&nbsp;Of&nbsp;&nbsp;Adaline</b></h4>
-                    <p>&#x2764;&nbsp;87%&nbsp;Action|Adventure</p>
+                    <h4 style="color: white;"><b> Blade&nbsp;&nbsp;Runner&nbsp;2049</b></h4>
+                    <p style="color: white;">&#x2764;&nbsp;87%&nbsp;Drama|Romance</p>
                   </div>
                 </div>
       </div>
     </div>
-<script type="text/javascript" >
-  var slideIndex = 1;
-  showSlides(slideIndex);
-  
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-  
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-  
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}    
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr style="color: #D81F26;"> 
+
+  <div class="genres">
+      <h2 style="margin-left: 20px;">DRAMA</h2>
+      <div class="movie-listing">
+          <div class="movie-card" style="margin-left: 10px;">
+            <a href="{{ url_for('description',moviename='Breakthrough') }}"><img width="250" height="300" src="https://www.christianforums.com/media/breakthrough-dvd-cover-01.61853/full"></a>
+                <h4 style="color: white;"><b>BreakThrough</b></h4>
+                <p style="color: white;">&#x2764;&nbsp;97%&nbsp;Drama|Music</p>
+              </div>
+            </div>
+            <div class="movie-card"style="margin-left: -60px;">
+              <a href="{{ url_for('description',moviename='Twilight') }}"><img width="250" height="300" src="https://cdn3.movieweb.com/i/movie/4hJVgUIxcz1IsaRwxOAJR2qxAnYoqV/384:50/Twilight.jpg" ></a>
+                  <h4 style="color: white;"><b>Twilight</b></h4>
+                  <p style="color: white;">&#x2764;&nbsp;97%&nbsp;Drama|Romance</p>
+                </div>
+              </div>
+              <div class="movie-card" style="margin-left: -60px;margin-top:-50px">
+                  <a href="{{ url_for('description',moviename='The Age of Adaline') }}"><img width="250" height="300" src="https://i.pinimg.com/originals/0d/d8/84/0dd884cb6b79f85d3c43d65c45b3aa43.jpg"></a>
+                      <h4 style="color: white;"><b>The&nbsp;&nbsp;Age&nbsp;&nbsp;of&nbsp;&nbsp;Adeline</b></h4>
+                      <p style="color: white;">&#x2764;&nbsp;97%&nbsp;Drama|Romance</p>
+                    </div>
+                  </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+   
+    <hr style="background-color: #D81F26;"> 
+   
+  <script type="text/javascript">
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
     }
-    slides[slideIndex-1].style.display = "block";  
-  }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex - 1].style.display = "block";
+    }
   </script>
 </body>
-</html>  
+
+</html>
