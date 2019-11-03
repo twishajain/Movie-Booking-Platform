@@ -181,6 +181,7 @@ var txt=document.getElementById("ccnum");
   console.log(y);
     $("#price").html("<b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+y+"</b>");})
   
+    function paydone(){alert('Payment Done');}
 </script>
 <h2> Checkout Form</h2>
 
@@ -240,6 +241,7 @@ var txt=document.getElementById("ccnum");
         </div>
        
         <a id="a1" href="{{ url_for('login') }}"><button class="btn" onclick="alert('Payment Successfull')">Make Payment</button></a>
+
       </form>
     </div>
   </div>
