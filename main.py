@@ -11,10 +11,13 @@ db = client.mymongodb
 registered_users = db.registered
 movies= db.movies
 theatres=db.theatres
+bookings=db.bookings
 app = Flask(__name__)
 app.config['LAST']=""
 app.config['CURRMOVIE']=""
 app.config['CURRTHEATRE']=""
+app.config['CURRUSER']=""
+app.config['CURRSEATS']=[]
 @app.route("/")
 def home():
     app.config['LAST']="homepg.html"
@@ -89,6 +92,7 @@ def login():
     return render_template("login.html")
 @app.route("/payment", methods=['POST','GET'])
 def payment():
+    
     y=[]
     n=0
     for r in theatres.find():
@@ -98,11 +102,13 @@ def payment():
     print("y:",y)
     sel_seats=request.values.get("seatlist")
     sel_seats=sel_seats.split("x")
+    print (sel_seats)
+    s=sel_seats[:]
     sel_seats=y+sel_seats
     numseats=request.values.get("numseats")
-    print("num:",n)
     theatres.remove({"name":app.config['CURRTHEATRE']})
     theatres.insert({"name":app.config['CURRTHEATRE'],"filled":sel_seats,"num":n})
+    bookings.insert({"email":app.config['CURRUSER'],"movie":app.config['CURRMOVIE'],"seats":s})
     app.config['LAST']="payment.html"
     return render_template("payment.html",num=numseats)
 @app.route("/seats", methods=['GET','POST'])
@@ -150,6 +156,9 @@ def added():
     movies.insert({ "movie":movie, "actor":actor, "actress":actress, "director":director, "language":language, "description":description, "imageurl":imageurl, "timeslot":timeslot, "fromdate":fromdate,"todate":todate, "genre": genre})
     app.config['LAST']="added.html"
     return render_template("added.html")
+@app.route("/orders", methods=['GET','POST'])
+def orders():
+    return render_template("orders.html")
 @app.route("/homepg", methods=['GET','POST'])
 def homepg():
     email=request.values.get("email")
@@ -160,6 +169,7 @@ def homepg():
         print(tdate)
         return render_template("admin.html",date=tdate)
     if (email!=None):
+        app.config['CURRUSER']=email
         for r in registered_users.find():
             if (r["email"]==email and r["psw"]==psw):
                 c=[]
