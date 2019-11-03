@@ -6,15 +6,18 @@ from datetime import date,time
 import pymongo
 from flask import jsonify, request
 from flask_pymongo import PyMongo
-from homepg import hpg
 client = MongoClient("mongodb://127.0.0.1:27017")
 db = client.mymongodb
 registered_users = db.registered
 movies= db.movies
 theatres=db.theatres
+bookings=db.bookings
 app = Flask(__name__)
 app.config['LAST']=""
 app.config['CURRMOVIE']=""
+app.config['CURRTHEATRE']=""
+app.config['CURRUSER']=""
+app.config['CURRSEATS']=[]
 @app.route("/")
 def home():
     app.config['LAST']="homepg.html"
@@ -59,7 +62,6 @@ def landing():
         c.append(info)
     app.config['LAST']="landing.html"
     return render_template("landing.html",c=c,l=l)
-app.register_blueprint(hpg)
 @app.route("/regSuccess", methods=['GET','POST'])
 def regSuccess():
     email=request.values.get("email")
@@ -90,33 +92,38 @@ def login():
     return render_template("login.html")
 @app.route("/payment", methods=['POST','GET'])
 def payment():
+    
     y=[]
     n=0
     for r in theatres.find():
-        if(r["name"]=="Bharath Cinemas"):
+        if(r["name"]==app.config['CURRTHEATRE']):
             y=r["filled"]
             n=r["num"]
     print("y:",y)
     sel_seats=request.values.get("seatlist")
     sel_seats=sel_seats.split("x")
+    print (sel_seats)
+    s=sel_seats[:]
     sel_seats=y+sel_seats
     numseats=request.values.get("numseats")
-    print("num:",n)
-    theatres.remove({"name":"Bharath Cinemas"})
-    theatres.insert({"name":"Bharath Cinemas","filled":sel_seats,"num":n})
+    theatres.remove({"name":app.config['CURRTHEATRE']})
+    theatres.insert({"name":app.config['CURRTHEATRE'],"filled":sel_seats,"num":n})
+    bookings.insert({"email":app.config['CURRUSER'],"movie":app.config['CURRMOVIE'],"seats":s})
     app.config['LAST']="payment.html"
     return render_template("payment.html",num=numseats)
 @app.route("/seats", methods=['GET','POST'])
 def seats():
     filled=[]
     num=0
+    theatre=request.values.get("slct1")
+    print(theatre)
+    app.config['CURRTHEATRE']=theatre
     for r in theatres.find():
-        print(r["filled"])
-        filled=r["filled"]
-        num=r["num"]
-
+        if (r["name"]==theatre):
+            filled=r["filled"]
+            num=r["num"]
     app.config['LAST']="seats.html"
-    return render_template("seats.html",filled=filled,n=num)
+    return render_template("seats.html",filled=filled,n=num,theatre=theatre)
 @app.route("/description/<moviename>", methods=['GET','POST'])
 def description(moviename):
     app.config['LAST']="description.html"
@@ -149,5 +156,49 @@ def added():
     movies.insert({ "movie":movie, "actor":actor, "actress":actress, "director":director, "language":language, "description":description, "imageurl":imageurl, "timeslot":timeslot, "fromdate":fromdate,"todate":todate, "genre": genre})
     app.config['LAST']="added.html"
     return render_template("added.html")
+@app.route("/orders", methods=['GET','POST'])
+def orders():
+    l=[]
+    h=[]
+    for r in bookings.find():
+        if (r["email"]==app.config['CURRUSER']):
+            h.append(r["movie"])
+            h.append(r["seats"])
+        l.append(h)
+    print (l)
+    return render_template("orders.html",arr=l)
+@app.route("/homepg", methods=['GET','POST'])
+def homepg():
+    email=request.values.get("email")
+    psw=request.values.get("psw")
+    if (email=='admin@gmail.com' and psw=="admin@gmail.com"):
+        today = date.today()
+        tdate = str(today.strftime("%Y-%m-%d"))
+        print(tdate)
+        return render_template("admin.html",date=tdate)
+    if (email!=None):
+        app.config['CURRUSER']=email
+        for r in registered_users.find():
+            if (r["email"]==email and r["psw"]==psw):
+                c=[]
+                info={} 
+                l=0
+                for r in movies.find():
+                    l=l+1
+                    info['movie']=r['movie']
+                    info['actor']=r['actor']
+                    info['actress']=r['actress']
+                    info['language']=r['language']
+                    info['description']=r['description']
+                    info['director']=r['director']
+                    info['imageurl']=r['imageurl']
+                    info['timeslot']=r['timeslot']
+                    info['fromdate']=r['fromdate']
+                    info['todate']=r['todate']
+                    info['genre']=r['genre']
+                    c.append(info)
+                return render_template("landing.html",c=c,l=l)
+        return render_template("error.html")
+    return render_template("homepg.html")
 if __name__ == "__main__":
     app.run(debug=True)
