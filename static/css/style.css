@@ -1,5 +1,7 @@
 * {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
+body {font-family: Verdana, sans-serif; margin:0;
+  background-color:#222222;
+}
 .mySlides {display: none}
 img {vertical-align: middle;}
 
@@ -8,14 +10,13 @@ img {vertical-align: middle;}
 }
 .carousel {
     margin-top: -19px;
-    height: 500px;
-    background-image: url("https://static-news.moneycontrol.com/static-mcnews/2019/10/housefull4-770x433.jpg");
+    max-height: 400px;
 }
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
+  margin-left:200px;
   position: relative;
-  margin: auto;
   padding-top: 20px;
 }
 .nav-bar{
@@ -40,10 +41,10 @@ img {vertical-align: middle;}
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
   width: auto;
   padding: 16px;
-  margin-top: -22px;
+  margin-top: -220px;
+  margin-left:-65px;
   color: white;
   font-weight: bold;
   font-size: 18px;
@@ -54,7 +55,7 @@ img {vertical-align: middle;}
 
 /* Position the "next button" to the right */
 .next {
-  right: 0;
+  margin-left:820px;
   border-radius: 3px 0 0 3px;
 }
 
@@ -67,26 +68,3 @@ img {vertical-align: middle;}
 .active, .dot:hover {
   background-color: #717171;
 }
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-} 
