@@ -5,13 +5,20 @@
         </title>
         <script>
         var x='{{arr}}';
-        alert(x);
+        x=x.replace("[","")
+        x=x.replace("]","")
+        x=x.split(",")
+        var y='{{name}}';
+        //alert(x);
         document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById("l").innerHTML=x},false)
+            document.getElementById("b").innerHTML+="Welcome "+y;
+        document.getElementById("l").innerHTML+=x[0];
+        document.getElementById("l").innerHTML+=x[2]}
+        ,false)
         </script>
     </head>
-    <body>
-        This is my user profile.
+    <body style="background-color: black;color: white;">
+        <p id="b"></p>
         <p id="l"></p>
     </body>
 </html>

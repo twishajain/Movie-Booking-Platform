@@ -166,7 +166,7 @@ def orders():
             h.append(r["seats"])
         l.append(h)
     print (l)
-    return render_template("orders.html",arr=l[0])
+    return render_template("orders.html",arr=l[0],name=app.config['CURRUSER'])
 @app.route("/homepg", methods=['GET','POST'])
 def homepg():
     email=request.values.get("email")
