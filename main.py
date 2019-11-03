@@ -15,6 +15,7 @@ theatres=db.theatres
 app = Flask(__name__)
 app.config['LAST']=""
 app.config['CURRMOVIE']=""
+app.config['CURRTHEATRE']=""
 @app.route("/")
 def home():
     app.config['LAST']="homepg.html"
@@ -93,7 +94,7 @@ def payment():
     y=[]
     n=0
     for r in theatres.find():
-        if(r["name"]=="Bharath Cinemas"):
+        if(r["name"]==app.config['CURRTHEATRE']):
             y=r["filled"]
             n=r["num"]
     print("y:",y)
@@ -102,21 +103,23 @@ def payment():
     sel_seats=y+sel_seats
     numseats=request.values.get("numseats")
     print("num:",n)
-    theatres.remove({"name":"Bharath Cinemas"})
-    theatres.insert({"name":"Bharath Cinemas","filled":sel_seats,"num":n})
+    theatres.remove({"name":app.config['CURRTHEATRE']})
+    theatres.insert({"name":app.config['CURRTHEATRE'],"filled":sel_seats,"num":n})
     app.config['LAST']="payment.html"
     return render_template("payment.html",num=numseats)
 @app.route("/seats", methods=['GET','POST'])
 def seats():
     filled=[]
     num=0
+    theatre=request.values.get("slct1")
+    print(theatre)
+    app.config['CURRTHEATRE']=theatre
     for r in theatres.find():
-        print(r["filled"])
-        filled=r["filled"]
-        num=r["num"]
-
+        if (r["name"]==theatre):
+            filled=r["filled"]
+            num=r["num"]
     app.config['LAST']="seats.html"
-    return render_template("seats.html",filled=filled,n=num)
+    return render_template("seats.html",filled=filled,n=num,theatre=theatre)
 @app.route("/description/<moviename>", methods=['GET','POST'])
 def description(moviename):
     app.config['LAST']="description.html"
