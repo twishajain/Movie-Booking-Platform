@@ -1,1 +1,1 @@
-# ITTproj
+# Movie Booking Platform
