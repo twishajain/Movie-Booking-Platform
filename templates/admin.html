@@ -10,18 +10,132 @@
         
                 body {
                     font-family: Simplifica;
-                    background-image:url(https://www.elsetge.cat/myimg/f/39-398657_black-and-red-abstract-full-wallpap-5841-high.jpg); 
+                    color: white;
+                    background: url(https://www.elsetge.cat/myimg/f/39-398657_black-and-red-abstract-full-wallpap-5841-high.jpg);
+                    background-position: center;
                     
                 }
         
                 h1 {
                     color: white;
                     text-align: center;
-                    padding: 100px 100px;
+                    //padding: 100px 100px;
                     font-size: 50px;
+                    margin-top:70px;
                     font-family: Netflix;
                 }
-        
+                .container p{
+                    font-family:sans-serif;
+                    font-size: 20px;
+                    font-weight:700; 
+                }
+                form{
+                     font-family:initial;
+                    font-size: 20px;
+                    font-weight:500; 
+                }
+                .admin{
+                    padding-top: 10px;
+                    padding-bottom: 50px;
+                }
+                .admin label
+                { padding-left: 50px;
+                    padding-right: 10px;
+                }
+                .admin input{
+                    padding:10px;
+                    width:20%;
+                }
+                .director {
+                    padding-top: 10px;
+                    padding-bottom: 50px;
+                }
+               .director label
+                { padding-left: 47px;
+                padding-right: -6px;
+                }
+                .director input{
+                    padding:10px;
+                    width:20%;
+                }
+                .director select{
+                     background: white;
+                       border: none;
+                       font-size: 14px;
+                       height: 25px;
+                       padding-top: 5px;
+                       padding-bottom: 5px;
+                       padding-left:15px; 
+                       padding-right:15px;
+                }
+                .dates{
+                    padding-top: 10px;
+                    padding-bottom: 50px;
+                }
+                .dates label
+                { padding-left: 50px;
+                    padding-right: 5px;
+                }
+                .dates input{
+                    padding-left:10px;
+                    padding-bottom:5px; 
+                    padding-top:5px;
+                    width:20%;
+                }
+                .des{
+                    display: inline;
+                }
+                .des label{ 
+                        padding-left: 50px;
+                        padding-right: 10px;
+                        margin-top:-10%;
+                        margin-bottom: 10%;
+                }
+                 .des textarea{
+                     padding-left:10px;
+                    padding-right: 20px;
+                    margin-top: 3%;
+                    margin-bottom:-7%;
+                    margin-left: 0.5%;
+                    margin-right: 18%;
+                 }
+                 .g
+                 {margin-left:60%;
+                    margin-top:-2%;
+                }
+                 .g select{
+                    background: white;
+                    border: none;
+                     font-size: 14px;
+                      height: 25px;
+                      padding-top:4px;
+                       padding-bottom:6px;
+                       padding-left:15px; 
+                       padding-right:15px;
+                 }
+                 .sub button{
+                    margin-top:3%;
+                    margin-left:40%;
+                    width: 13%;
+                    padding: 15px;
+                    border-style: none;
+                    border-radius: 5px;
+                    font-size: 20px;
+                    background-image: linear-gradient(to right, #4799e0, #859985);
+                 }
+                 button 
+                 {
+                    width:10%;
+                    margin-left:41.5%;
+                    padding: 15px;
+                    font-size: 20px;
+                    margin-top:-10px;
+                    margin-bottom:15px;
+                    border-radius:3px;
+                    border-style: none; 
+                    background-image: linear-gradient(to right, #ffffff,#999999);
+                 }
+                
                 .butt {
                     display: inline-block;
                     padding: 0.5em 3em;
@@ -45,7 +159,7 @@
                 }
             </style>
             </head>
-    <body style="color: white;">
+    <body>
         <script type="text/javascript">
                 function checkTime(element)
                 {
@@ -67,15 +181,17 @@
                 <h1>Add New Movies</h1>
                 <p>Please enter the details of the movie to be added</p>
                 <hr>
-                
+             <div class="admin">
                 <label for="movie"><b>Movie</b></label>
                 <input type="text" placeholder="Enter Movie" name="movie" required id="movie">
-                    
+
                     <label for="actor"><b>Actor</b></label>
                     <input type="text" placeholder="Enter name of Actor" id ="actor" name="actor" required>
-                      
+
                     <label for="actress"><b>Actress</b></label>
                     <input type="text" placeholder="Enter name of Actress" id ="actress" name="actress" required>
+                </div>
+                <div class="director">
 
                     <label for="director"><b>Director</b></label>
                     <input type="text" placeholder="Enter name of Director" id ="director" name="director" required>
@@ -87,30 +203,36 @@
                         <option>Hindi</option>
                         <option>English</option>
                     </select>
+                    </div>
+                <div class="dates">
                     <label for="fromdate"><b>From</b></label>
                     <input type="date" id="fromdate" name="fromdate" min={{date}}>
                     <label for="todate"><b>To</b></label>
                     <input type="date" id="todate" name="todate" min={{date}}>
                     <label for="timeslot"><b>Time</b></label>
                     <input type="time" id="timeslot" name="timeslot" min="08:00" max="23:00" onchange="checkTime(this)">
+                </div>
+                <div class="des">
                     <label for="description"><b>Description</b></label>
-                    <textarea id="description" name="description" rows="10" cols="30"></textarea>
+                    <textarea id="description" name="description" placeholder="Enter the description here..." rows="10" cols="50"></textarea>
+                </div>
+                <div class="g">
                     <label for="genre"><b>Genre</b></label>
                     <select id="genre" name="genre">
                         <option>Action</option>
                         <option>Comedy</option>
                         <option>Drama</option>
                     </select>
-
-
-                            <hr>
+                    </div>
+                    <br><br><br>
+                <div class="sub">
                                 <button type="submit" class="addbtn,butt">Add Movie</button>
-                                </div>
-                                
-                                <div class="container signin">
-                                <p> <a href="/homepg">Sign out</a>.</p>
-                                </div>
+                        </div>
+                            </div>
+                        <div class="container signin">
+                                <p> <button><a href="/homepg">Sign out</a>.</button></p>
+                            </div>
                                 </form>
-                                
+
                                 </body>
                                 </html>
